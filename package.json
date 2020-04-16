@@ -7,12 +7,19 @@
     "dev": "nodemon --watch"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "co": "^4.6.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.17.0",
     "hbs": "^4.1.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "http-errors": "^1.6.3",
+    "mongodb": "^3.5.6",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
