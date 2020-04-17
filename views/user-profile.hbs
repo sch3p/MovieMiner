@@ -1,14 +1,14 @@
 <div class="h-100 row align-items-center text-light" style="width: 75vw; padding-left: 10%;">
     <div class="col">
         <br/>
+        <img src='{{user.userImage}}' style="border-radius: 50%; height: 50px; width: 50px;"/>
         <h4>{{ user.givenName }}'s Profile</h4>
 
         <p>{{user.email}}</p>
 
-        <img src='{{user.userImage}}' style="border-radius: 50%; height: 50px; width: 50px;"/>
-
+        <br/>
         <form action="/users/logout">
-                <button type="submit" class="btn btn-warning">Leave here.</button>
+                <button type="submit" class="btn btn-warning">Log out</button>
         </form>
     </div>
 </div>
