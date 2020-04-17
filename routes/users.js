@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
   if (req.isAuthenticated()) {
     niceUser = new User(req.user);
     console.log('--- Email: ' + req.user.emails[0].value + ' ---');
-    res.render('user-profile', { user: niceUser });
+    res.render('user-profile', { user: niceUser, title: 'Movie Miner' });
   } else {
-    res.render('user-noprofile');
+    res.render('user-noprofile', { title: 'Movie Miner' });
   }
 });
 
@@ -63,6 +63,8 @@ router.get('/logout', function(req, res, next) {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // UNCOMMENT NEXT LINE TO REDIRECT IN LOCAL ENV
+    // callbackURL: 'http://localhost:8081/users/return'
     callbackURL: 'https://cit412-movie-miner.ue.r.appspot.com/users/return'
   },
   function(accessToken, refreshToken, profile, callback) {

@@ -1,7 +1,14 @@
-<h1>{{ user.givenName }}'s Profile</h1>
+<div class="h-100 row align-items-center text-light" style="width: 75vw; padding-left: 10%;">
+    <div class="col">
+        <br/>
+        <h4>{{ user.givenName }}'s Profile</h4>
 
-<p>{{user.email}}</p>
+        <p>{{user.email}}</p>
 
-<img src='{{user.userImage}}'/>
+        <img src='{{user.userImage}}' style="border-radius: 50%; height: 50px; width: 50px;"/>
 
-<p><a href="/users/logout">Log Out</a></p>
+        <form action="/users/logout">
+                <button type="submit" class="btn btn-warning">Leave here.</button>
+        </form>
+    </div>
+</div>

@@ -17,6 +17,7 @@ const mongo = require('./services/db');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const browseRouter = require('./routes/browse');
 
 /**
  * -------------- GENERAL SETUP ----------------
@@ -95,6 +96,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/browse', browseRouter);
 
 /**
  * -------------- ERROR HANDLING ----------------
