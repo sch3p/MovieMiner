@@ -23,3 +23,9 @@ a {
   /* color: #00B7FF; */
   color: red;
 }
+
+#centerThis {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

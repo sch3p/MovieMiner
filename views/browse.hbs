@@ -1,12 +1,16 @@
-<div class="h-100 row align-items-center text-light" style="width: 75vw; padding-left: 30%;">
+<div class="h-100 row text-light">
     <div class="col">
-        <br/>
-        <form action="/users">
-            <div class="form-group">
-                <input type="search" class="form-control" id="inputSearch" aria-describedby="inputSearch" placeholder='{{message}}'>
-                <small id="inputSearch" class="form-text text-muted">Currently � selling your data..</small>
+        <br />
+        <form method="POST" action="/browse">
+            <div id="centerThis">
+                <div class="form-group">
+                    <input type="search" class="form-control" id="inputSearch" aria-describedby="inputSearch"
+                        placeholder='{{message}}' name="inputSearch">
+                    <small id="inputSearch" class="form-text text-muted">Selling data one search at a time..</small>
+                    <br/>
+                    <button type="submit" class="btn btn-danger">Don't click this yet. <br/> You've been warned.</button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Don't Click This Yet</button>
         </form>
     </div>
 </div>
