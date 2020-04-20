@@ -22,7 +22,7 @@ router.get('/search', async (req, res, next) => {
 
 const searchMovie = async function(searchIn, callback) {
     console.log(`--- In searchMovie function ---`);
-    connection.query(`SELECT imdb_title_id, title FROM IMDbMovies where imdb_title_id  = '${searchIn}' OR title LIKE '%${searchIn}%'`,
+    connection.query(`SELECT imdb_title_id, title FROM IMDbMovies where title LIKE '%${searchIn}%' OR year LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR country LIKE '%${searchIn}%' OR language LIKE '%${searchIn}%' OR director LIKE '%${searchIn}%' OR writer LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%' OR description LIKE '%${searchIn}%'`,
     function(error, results, fields) {
         if(error) throw error;
         callback(results);
