@@ -18,6 +18,7 @@ const mongo = require('./services/db');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const browseRouter = require('./routes/browse');
+const searchRouter = require('./routes/search');
 
 /**
  * -------------- GENERAL SETUP ----------------
