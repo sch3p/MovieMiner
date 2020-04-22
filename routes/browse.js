@@ -6,11 +6,13 @@ const connection = require('../services/sql');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
-    var someMovies = await browseMovies(results);
+    //var someMovies = await browseMovies(results);
+    //console.log(someMovies);
     res.render('browse', {// send someMovies to the handlebar and display?
-        message: 'What are we mining today?',
+        message: 'What are we mining today?', 
         clicked: 'You\'ve been warned.'
     });
+    
 });
 
 router.get('/search', async (req, res, next) => {
@@ -32,7 +34,7 @@ const searchMovie = async function(searchIn, callback) {
 
 const browseMovies = async function(callback) {
     console.log(`--- In browseMovies function ---`);
-    connection.query(`SELECT * FROM IMDbMovies`, function(error, results, fields){
+    connection.query(`SELECT imdb_title_id, title FROM IMDbMovies ORDER BY RAND() LIMIT 5;`, function(error, results, fields){
         if (error) throw error;
         callback(results);
     });
