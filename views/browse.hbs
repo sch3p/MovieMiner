@@ -1,16 +1,25 @@
 <div class="h-100 row text-light">
-    <div class="col">
+    <div class="col parent">
         <br />
-        <form method="POST" action="/browse/search">
-            <div id="centerThis">
-                <div class="form-group">
-                    <input type="search" class="form-control" id="inputSearch" aria-describedby="inputSearch"
-                        placeholder='{{message}}' name="inputSearch">
-                    <small id="inputSearch" class="form-text text-muted">Selling data one search at a time..</small>
-                    <br/>
-                    <button type="submit" class="btn btn-danger">Don't click this yet. <br/> You've been warned.</button>
+        <div style="width: 80vw;">
+            <h1>{{message}}</h1>
+            <br /><br />
+            <p>Take a look at these "random" movies</p>
+            <br />
+            {{#each someMovies}}
+                <div class="card text-dark">
+                    <div class="card-header">
+                        {{ this.movieTitle }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">IMdb ID: {{ this.movieID }}</p>
+                        <a href="/view?key={{ this.movieID }}" class="btn btn-primary">View Movie</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <br />
+            {{else}}
+                <h3>Sorry bud, we messed up somewhere :(</h3>
+            {{/each}}
+        </div>
     </div>
 </div>
