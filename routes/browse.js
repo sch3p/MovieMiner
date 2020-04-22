@@ -5,7 +5,7 @@ var router = express.Router();
 const connection = require('../services/sql');
 
 /* GET browse page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
     var someMovies = await selectEntries();
     res.render('browse', {
         message: 'What are we mining today?',
