@@ -6,7 +6,7 @@ const connection = require('../services/sql');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
-    var someMovies = await browseMovies();
+    var someMovies = await browseMovies(results);
     res.render('browse', {// send someMovies to the handlebar and display?
         message: 'What are we mining today?',
         clicked: 'You\'ve been warned.'
