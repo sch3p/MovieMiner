@@ -6,17 +6,15 @@ const connection = require('../services/sql');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
-    var someMovies = await browseMovies();
-    console.log("--- someMoveis object: " + someMovies);
-    //console.log(someMovies);
-    // res.render('browse', {// send someMovies to the handlebar and display?
-    //     message: 'What are we mining today?',
-    //     someMovies: someMovies,
-    //     movieID: someMovies[0].imdb_title_id,
-    //     movieTitle: someMovies[0].title
-    // });
-    res.status(200).send(someMovies);
-    
+    await browseMovies(function(results){
+            res.render('browse', {// send someMovies to the handlebar and display?
+            message: 'What are we mining today?',
+            someMovies: results,
+            movieID: results[0].imdb_title_id,
+            movieTitle: results[0].title
+        });    
+    });
+
 });
 
 router.get('/search', async (req, res, next) => {

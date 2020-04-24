@@ -9,11 +9,11 @@
             {{#each someMovies}}
                 <div class="card text-dark">
                     <div class="card-header">
-                        {{ this.movieTitle }}
+                        {{ this.title }}
                     </div>
                     <div class="card-body">
-                        <p class="card-text">IMdb ID: {{ this.movieID }}</p>
-                        <a href="/view?key={{ this.movieID }}" class="btn btn-primary">View Movie</a>
+                        <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
+                        <a href="/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
                     </div>
                 </div>
                 <br />
