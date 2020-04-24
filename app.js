@@ -98,6 +98,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/browse', browseRouter);
+app.use('/search', searchRouter);
 
 /**
  * -------------- ERROR HANDLING ----------------

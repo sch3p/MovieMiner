@@ -17,22 +17,7 @@ router.get('/', async function(req, res, next) {
 
 });
 
-router.get('/search', async (req, res, next) => {
-    await searchMovie(req.body.inputSearch, function(results) {
-        res.status(200).send(results);
-    })
-})
-
-// helper functions
-
-const searchMovie = async function(searchIn, callback) {
-    console.log(`--- In searchMovie function ---`);
-    connection.query(`SELECT imdb_title_id, title FROM IMDbMovies where title LIKE '%${searchIn}%' OR year LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR country LIKE '%${searchIn}%' OR language LIKE '%${searchIn}%' OR director LIKE '%${searchIn}%' OR writer LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%' OR description LIKE '%${searchIn}%'`,
-    function(error, results, fields) {
-        if(error) throw error;
-        callback(results);
-    });
-}
+//helper functions
 
 const browseMovies = async function(callback) {
     console.log(`--- In browseMovies function ---`);
