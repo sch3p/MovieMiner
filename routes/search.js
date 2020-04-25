@@ -5,7 +5,6 @@ var router = express.Router();
 const Movie = require('../models/Movie');
 
 // DB Depends --> moved to model
-// const connection = require('../services/sql');
 
 /* GET home page. */
 router.post('/', async (req, res, next) => {
@@ -13,8 +12,6 @@ router.post('/', async (req, res, next) => {
 
     try {
         await Movie.searchMovie(key, function(results) {
-            // console.log('--- Query Results ---')
-            // console.log(results);
             // Render based on how many were found on search
             if (results.length == 0) {
                 console.log('--- No movies found on search ---');
@@ -26,20 +23,9 @@ router.post('/', async (req, res, next) => {
             } else {
                 res.render(`search`, {
                     theMovie: results,
-                    imdb_title_id: key,
-                    // title: results[0].title,
-                    // year: results[0].year,
-                    // genre: results[0].genre,
-                    // duration: results[0].duration,
-                    // country: results[0].country,
-                    // language: results[0].language,
-                    // director: results[0].director,
-                    // writer: results[0].writer,
-                    // actors: results[0].actors,
-                    // description: results[0].description
+                    imdb_title_id: key
                 });
             }
-    
         });
     } catch (err) {
         res.render('oopsie', {
@@ -48,16 +34,5 @@ router.post('/', async (req, res, next) => {
         });
     }
 });
-
-// helper functions
-
-// const searchMovie = async function(searchIn, callback) {
-//     console.log(`--- In searchMovie function ---`);
-//     connection.query(`SELECT * FROM IMDbMovies where title LIKE '%${searchIn}%' OR year LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR country LIKE '%${searchIn}%' OR language LIKE '%${searchIn}%' OR director LIKE '%${searchIn}%' OR writer LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%' OR description LIKE '%${searchIn}%'`,
-//     function(error, results, fields) {
-//         if(error) throw error;
-//         callback(results);
-//     });
-// }
 
 module.exports = router;

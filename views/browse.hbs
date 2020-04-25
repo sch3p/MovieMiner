@@ -1,5 +1,5 @@
 <br /><br /><br />
-<div class="h-100 row text-light">
+<div class="h-100 row text-light parent">
     <div class="col parent">
         <br />
         <div style="width: 80vw;">
@@ -8,19 +8,19 @@
             <p>Take a look at these "random" movies</p>
             <br />
             {{#each someMovies}}
-            <div class="card bg-light text-dark text-center mx-auto">
-                <div class="card-header">
-                    {{ this.title }}
+                <div class="card bg-light text-dark text-center mx-auto" style="width: 50em;">
+                    <div class="card-header">
+                        {{ this.title }}
+                    </div>
+                    {{!-- <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" --}}
+                    <div class="card-body">
+                        <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
+                        <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
+                    </div>
                 </div>
-                {{!-- <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" --}}
-                <div class="card-body">
-                    <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
-                    <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
-                </div>
-            </div>
-            <br />
+                <br />
             {{else}}
-            <h3>Sorry bud, we messed up somewhere :(</h3>
+                <h3>Sorry bud, we messed up somewhere :(</h3>
             {{/each}}
         </div>
     </div>

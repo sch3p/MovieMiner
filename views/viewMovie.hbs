@@ -1,36 +1,34 @@
 <br /><br /><br />
-<div class="container">
-    <div class="h-100 row text-light">
-        <div class="col">
-            <br />
-            <div style="width: 80vw;">
-                    {{#each theMovie}}
-                    <div class="card bg-light text-dark text-center mx-auto">
-                        <div class="card-header">
-                            {{ this.title }}
-                        </div>
-                        {{!-- <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" <div class="card-body"> --}}
-                        <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
-                        <p class="card-text">Year: {{ this.year }}</p>
-                        <p class="card-text">Genre: {{ this.genre }}</p>
-                        <p class="card-text">Duration: {{ this.duration }} minutes</p>
-                        <p class="card-text">Country: {{ this.country }}</p>
-                        <p class="card-text">Language: {{ this.language }}</p>
-                        <p class="card-text">Director: {{ this.director }}</p>
-                        <p class="card-text">Writer: {{ this.writer }}</p>
-                        <p class="card-text">Actors: {{ this.actors }}</p>
-                        <p class="card-text">Description: {{ this.description }}</p>
+<div class="h-100 row text-light parent">
+    <div class="col parent">
+        <br />
+        <div style="width: 80vw;">
+                {{#each theMovie}}
+                <div class="card bg-light text-dark text-center mx-auto">
+                    <div class="card-header">
+                        {{ this.title }}
                     </div>
-                    <br />
-                    {{else}}
-                    <h3>Sorry bud, can't find what you want :(</h3>
-                    {{/each}}
-                {{!-- <a href="/browse" class="btn btn-danger">
-                    <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block" width="20"
-                        height="20" />
-                    Back to list</a> --}}
-                <a href="#" class="btn btn-success">Mine Movie</a>
-            </div>
+                    {{!-- <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" <div class="card-body"> --}}
+                    <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
+                    <p class="card-text">Year: {{ this.year }}</p>
+                    <p class="card-text">Genre: {{ this.genre }}</p>
+                    <p class="card-text">Duration: {{ this.duration }} minutes</p>
+                    <p class="card-text">Country: {{ this.country }}</p>
+                    <p class="card-text">Language: {{ this.language }}</p>
+                    <p class="card-text">Director: {{ this.director }}</p>
+                    <p class="card-text">Writer: {{ this.writer }}</p>
+                    <p class="card-text">Actors: {{ this.actors }}</p>
+                    <p class="card-text">Description: {{ this.description }}</p>
+                </div>
+                <br />
+                {{else}}
+                <h3>Sorry bud, can't find what you want :(</h3>
+                {{/each}}
+            {{!-- <a href="/browse" class="btn btn-danger">
+                <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block" width="20"
+                    height="20" />
+                Back to list</a> --}}
+            <a href="#" class="btn btn-success">Mine Movie</a>
         </div>
     </div>
 </div>
