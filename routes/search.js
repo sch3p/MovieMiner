@@ -8,7 +8,7 @@ const Movie = require('../models/Movie');
 
 /* GET home page. */
 router.post('/', async (req, res, next) => {
-    var key = req.body.campaign_input;
+    var key = req.body.search;
 
     try {
         await Movie.searchMovie(key, function(results) {
