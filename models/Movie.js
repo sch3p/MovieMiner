@@ -21,31 +21,42 @@ class Movie {
     static async getMoviePoster(id) {
         console.log('--- in getMoviePoster function ---');
 
+        // var posterURL = '';
+
         omdb.get({
             id: id
         }).then(res => {
-            // console.log('--- Response from OMDB ---');
-            // console.log(res);
+            console.log('--- Response from OMDB ---');
+            console.log(res);
             console.log(`--- Poster URL FOUND for ${id}---`);
             console.log(res.poster);
             return res.poster;
         }).catch(console.error);
-
     }
 
-    // var moviePoster = await omdb.get(movieID, function(err, movie) {
-        //     if(err) {
-        //         return console.error(err);
-        //     }
+    static async putPosters(movieObjs) {
+        // get poster url and put into array
+        var moviePosters = [];
 
-        //     if(!movie) {
-        //         return console.log('--- Movie not found!');
-        //     }
+        console.log('--- in putPosters function ---');
+            
+        for (var i = 0; i <= 5; ++i) {
+            let id = movieObjs[i].imdb_title_id;
+            console.log('--- Finding current ID ---');
+            console.log(id);
+            let url = await Movie.getMoviePoster(id);
+            console.log('--- URL got ---');
+            console.log(url)
+            moviePosters[i] = url;
+            console.log('--- New poster added to array ---');
+            // console.log(moviePosters[i]);
+        }
 
-        //     console.log('--- OMDB GET RETURN ---');
-        //     console.log(movie.poster);
-        //     return movie.poster;
-        // });
+        // var moviePoster = Movie.getMoviePoster(movieID);
+        console.log('--- Found movie posters ---');
+        console.log(moviePosters);
+        return moviePosters;
+    }
 
     static async browseMovies(callback) {
         console.log(`--- In browseMovies function ---`);

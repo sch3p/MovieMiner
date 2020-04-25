@@ -12,7 +12,9 @@
                     <div class="card-header">
                         {{ this.title }}
                     </div>
-                    {{!-- <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" --}}
+                    {{#each somePosters}}
+                        <img class="card-img-top" src="{{this}}" alt="Poster Image"/>
+                    {{/each}}
                     <div class="card-body">
                         <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
                         <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
