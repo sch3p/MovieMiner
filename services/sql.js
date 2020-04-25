@@ -10,5 +10,6 @@ let config = {
 }
 
 let connection = mysql.createConnection(config);
+console.log('--- Connected to mySQL Server ---');
 
 module.exports = connection;

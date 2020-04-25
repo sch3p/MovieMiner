@@ -1,32 +1,59 @@
 var express = require('express');
 var router = express.Router();
+const omdb = require('omdb');
 
-// DB Depends
-const connection = require('../services/sql');
+// DB Depends --> moved to Movie model
+// const connection = require('../services/sql');
+
+// various spells to get movie info
+const Movie = require('../models/Movie');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
-    await browseMovies(function(results){
-            res.render('browse', {// send someMovies to the handlebar and display?
+    await Movie.browseMovies(function(results){
+        // info from sql db
+        var movieID = results[0].imdb_title_id;
+        var movieTitle = results[0].title;
+        // get poster url
+        // var moviePoster = await omdb.get(movieID, function(err, movie) {
+        //     if(err) {
+        //         return console.error(err);
+        //     }
+
+        //     if(!movie) {
+        //         return console.log('--- Movie not found!');
+        //     }
+
+        //     console.log('--- OMDB GET RETURN ---');
+        //     console.log(movie.poster);
+        //     return movie.poster;
+        // });
+
+        res.render('browse', {
             message: 'What are we mining today?',
             someMovies: results,
-            movieID: results[0].imdb_title_id,
-            movieTitle: results[0].title
+            movieID: movieID,
+            movieTitle: movieTitle,
+            // moviePoster: omdb.poster(movieID)
         });    
     });
-
 });
 
-//helper functions
+/* GET view a single movie page. */
+router.get('/view', async function(req, res, next) {
 
-const browseMovies = async function(callback) {
-    console.log(`--- In browseMovies function ---`);
-    connection.query(`SELECT imdb_title_id, title FROM IMDbMovies ORDER BY RAND() LIMIT 5;`,
-        function(error, results, fields){
-            if (error) throw error;
-            callback(results);
-        }
-    );
-}
+    var key = req.query.key;
+
+    await Movie.viewSingleMovie(key, function(results) {
+
+        res.render('viewMovie', {
+            theMovie: results
+            // moviePoster: omdb.poster(movieID)
+        }); 
+
+    });
+});
+
+//helper functions moved to Movie model
 
 module.exports = router;
