@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const omdb = require('omdb');
+// const omdb = require('omdb');
 
 // DB Depends --> moved to Movie model
 // const connection = require('../services/sql');
@@ -12,29 +12,38 @@ const Movie = require('../models/Movie');
 router.get('/', async function(req, res, next) {
     await Movie.browseMovies(function(results){
         // info from sql db
-        var movieID = results[0].imdb_title_id;
-        var movieTitle = results[0].title;
+        // var movieID = results[0].imdb_title_id;
+        // var movieTitle = results[0].title;
+
+        console.log('IMDB id: ' + results[0].imdb_title_id);
+
         // get poster url
-        // var moviePoster = await omdb.get(movieID, function(err, movie) {
-        //     if(err) {
-        //         return console.error(err);
-        //     }
+        var moviePosters = [];
 
-        //     if(!movie) {
-        //         return console.log('--- Movie not found!');
-        //     }
+        const putPosters = async () => {
+            console.log('--- in putPosters function ---');
+            
+            for (var i = 0; i <= 5; ++i) {
+                let id = results[i].imdb_title_id;
+                console.log('--- Finding current ID ---');
+                console.log(id);
+                moviePosters[i] = await Movie.getMoviePoster(id);
+                console.log('--- New poster added to array ---');
+                // console.log(moviePosters[i]);
+            }
 
-        //     console.log('--- OMDB GET RETURN ---');
-        //     console.log(movie.poster);
-        //     return movie.poster;
-        // });
+            // var moviePoster = Movie.getMoviePoster(movieID);
+            console.log('--- Found movie posters ---');
+            console.log(moviePosters);
+            return moviePosters;
+        }
+
+        putPosters();
 
         res.render('browse', {
             message: 'What are we mining today?',
             someMovies: results,
-            movieID: movieID,
-            movieTitle: movieTitle,
-            // moviePoster: omdb.poster(movieID)
+            somePosters: moviePosters
         });    
     });
 });

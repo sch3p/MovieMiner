@@ -1,5 +1,7 @@
 // DB Depends
 const connection = require('../services/sql');
+// const omdb = require('omdb');
+const omdb = new (require('omdbapi'))(process.env.OMDB_API_KEY);
 
 class Movie {
 
@@ -15,6 +17,35 @@ class Movie {
             }   
         );
     }
+
+    static async getMoviePoster(id) {
+        console.log('--- in getMoviePoster function ---');
+
+        omdb.get({
+            id: id
+        }).then(res => {
+            // console.log('--- Response from OMDB ---');
+            // console.log(res);
+            console.log(`--- Poster URL FOUND for ${id}---`);
+            console.log(res.poster);
+            return res.poster;
+        }).catch(console.error);
+
+    }
+
+    // var moviePoster = await omdb.get(movieID, function(err, movie) {
+        //     if(err) {
+        //         return console.error(err);
+        //     }
+
+        //     if(!movie) {
+        //         return console.log('--- Movie not found!');
+        //     }
+
+        //     console.log('--- OMDB GET RETURN ---');
+        //     console.log(movie.poster);
+        //     return movie.poster;
+        // });
 
     static async browseMovies(callback) {
         console.log(`--- In browseMovies function ---`);
