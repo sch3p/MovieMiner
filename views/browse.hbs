@@ -16,7 +16,11 @@
                         <img class="card-img-top" src="{{this}}" alt="Poster Image"/>
                     {{/each}}
                     <div class="card-body">
-                        <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
+                        <p class="card-text">IMDb ID:
+                            <a href="https://www.imdb.com/title/{{this.imdb_title_id}}">
+                                {{ this.imdb_title_id }}
+                            </a>
+                        </p>
                         <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
                     </div>
                 </div>
