@@ -1,9 +1,23 @@
 // DB Depends
 const connection = require('../services/sql');
 // const omdb = require('omdb');
-const omdb = new (require('omdbapi'))(process.env.OMDB_API_KEY);
+// const omdb = new (require('omdbapi'))(process.env.OMDB_API_KEY);
+const fetch = require("node-fetch");
 
 class Movie {
+
+    static async fetchPoster(id) {
+        console.log('--- in fetchPoster function ---')
+        let key = process.env.OMDB_API_KEY;
+        let url = `http://www.omdbapi.com/?apikey=${key}&i=${id}`;
+        let response = await fetch(url);
+
+        console.log(`--- Getting poster from ${url}`);
+
+        var result = await response.json();
+
+        return result.Poster;
+    }
 
     static async viewSingleMovie(id, callback) {
         console.log(`--- In viewSingleMovie function ---`);
@@ -18,21 +32,21 @@ class Movie {
         );
     }
 
-    static async getMoviePoster(id) {
-        console.log('--- in getMoviePoster function ---');
+    // static async getMoviePoster(id) {
+    //     console.log('--- in getMoviePoster function ---');
 
-        // var posterURL = '';
+    //     // var posterURL = '';
 
-        omdb.get({
-            id: id
-        }).then(res => {
-            console.log('--- Response from OMDB ---');
-            console.log(res);
-            console.log(`--- Poster URL FOUND for ${id}---`);
-            console.log(res.poster);
-            return res.poster;
-        }).catch(console.error);
-    }
+    //     omdb.get({
+    //         id: id
+    //     }).then(res => {
+    //         console.log('--- Response from OMDB ---');
+    //         console.log(res);
+    //         console.log(`--- Poster URL FOUND for ${id}---`);
+    //         console.log(res.poster);
+    //         return res.poster;
+    //     }).catch(console.error);
+    // }
 
     static async putPosters(movieObjs) {
         // get poster url and put into array
@@ -44,10 +58,10 @@ class Movie {
             let id = movieObjs[i].imdb_title_id;
             console.log('--- Finding current ID ---');
             console.log(id);
-            let url = await Movie.getMoviePoster(id);
-            console.log('--- URL got ---');
-            console.log(url)
-            moviePosters[i] = url;
+            let poster = await Movie.fetchPoster(id);
+            console.log('--- URL Found ---');
+            console.log(poster)
+            moviePosters[i] = poster;
             console.log('--- New poster added to array ---');
             // console.log(moviePosters[i]);
         }

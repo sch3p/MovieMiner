@@ -24,10 +24,9 @@ router.get('/', async function(req, res, next) {
 
 /* GET view a single movie page. */
 router.get('/view', async function(req, res, next) {
-
     var key = req.query.key;
-    var poster = await Movie.getMoviePoster(key);
-    console.log('--- URL found in view route ---');
+    var poster = await Movie.fetchPoster(key);
+    console.log('--- URL found ---');
     console.log(poster);
 
     await Movie.viewSingleMovie(key, function(results) {
@@ -39,6 +38,15 @@ router.get('/view', async function(req, res, next) {
 
     });
 });
+
+// testing functions
+router.get('/test', async function(req, res, next) {
+    var poster = await Movie.fetchPoster('tt0371746');
+    
+    res.render('test', {
+        posterURL: poster
+    })
+})
 
 //helper functions moved to Movie model
 

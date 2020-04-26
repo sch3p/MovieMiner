@@ -8,28 +8,36 @@
                 <div class="card-header">
                     {{ this.title }}
                 </div>
-                <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image"/>
-                <div class="card-body">
-                    <p class="card-text">IMDb ID: <a href="https://www.imdb.com/title/{{this.imdb_title_id}}">{{ this.imdb_title_id }}</a></p>
-                    <p class="card-text">Year: {{ this.year }}</p>
-                    <p class="card-text">Genre: {{ this.genre }}</p>
-                    <p class="card-text">Duration: {{ this.duration }} minutes</p>
-                    <p class="card-text">Country: {{ this.country }}</p>
-                    <p class="card-text">Language: {{ this.language }}</p>
-                    <p class="card-text">Director: {{ this.director }}</p>
-                    <p class="card-text">Writer: {{ this.writer }}</p>
-                    <p class="card-text">Actors: {{ this.actors }}</p>
-                    <p class="card-text">Description: {{ this.description }}</p>
+                <div class="col">
+                    <img class="card-img-top" src="{{../moviePoster}}" alt="Poster Image"
+                        style="height: 25%; width: 25%;" />
                 </div>
-                <br />
-                {{else}}
-                <h3>Sorry bud, can't find what you want :(</h3>
-                {{/each}}
+                <div class="col">
+                    <div class="card-body">
+                        <p class="card-text">IMDb ID: <a
+                                href="https://www.imdb.com/title/{{this.imdb_title_id}}">{{ this.imdb_title_id }}</a>
+                        </p>
+                        <p class="card-text">Year: {{ this.year }}</p>
+                        <p class="card-text">Genre: {{ this.genre }}</p>
+                        <p class="card-text">Duration: {{ this.duration }} minutes</p>
+                        <p class="card-text">Country: {{ this.country }}</p>
+                        <p class="card-text">Language: {{ this.language }}</p>
+                        <p class="card-text">Director: {{ this.director }}</p>
+                        <p class="card-text">Writer: {{ this.writer }}</p>
+                        <p class="card-text">Actors: {{ this.actors }}</p>
+                        <p class="card-text">Description: {{ this.description }}</p>
+                    </div>
+                    <br />
+                    {{else}}
+                    <h3>Sorry bud, can't find what you want :(</h3>
+                    {{/each}}
+                </div>
             </div>
-        <a href="./" class="btn btn-danger">
-            <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block" width="20"
-                height="20" />
-            Go Back</a>
-        <a href="#" class="btn btn-success">Mine Movie</a>
+            <a href="./" class="btn btn-danger">
+                <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block" width="20"
+                    height="20" />
+                Go Back</a>
+            <a href="#" class="btn btn-success">Mine Movie</a>
+        </div>
     </div>
 </div>
