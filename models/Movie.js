@@ -3,12 +3,12 @@ const connection = require('../services/sql');
 // const omdb = require('omdb');
 // const omdb = new (require('omdbapi'))(process.env.OMDB_API_KEY);
 const fetch = require("node-fetch");
+const key = process.env.OMDB_API_KEY;
 
 class Movie {
 
     static async fetchPoster(id) {
         console.log('--- in fetchPoster function ---')
-        let key = process.env.OMDB_API_KEY;
         let url = `http://www.omdbapi.com/?apikey=${key}&i=${id}`;
         let response = await fetch(url);
 
@@ -49,10 +49,12 @@ class Movie {
     // }
 
     static async putPosters(movieObjs) {
-        // get poster url and put into array
-        var moviePosters = [];
 
         console.log('--- in putPosters function ---');
+        console.log(movieObjs);
+        
+        // get poster url and put into array
+        let moviePosters = [];
             
         for (var i = 0; i <= 5; ++i) {
             let id = movieObjs[i].imdb_title_id;
