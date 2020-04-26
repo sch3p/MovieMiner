@@ -7,37 +7,71 @@
             <div class="card bg-light text-dark text-center mx-auto">
                 <div class="card-header">
                     {{ this.title }}
-                </div>
-                <div class="col">
-                    <img class="card-img-top" src="{{../moviePoster}}" alt="Poster Image"
-                        style="height: 25%; width: 25%;" />
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <p class="card-text">IMDb ID: <a
-                                href="https://www.imdb.com/title/{{this.imdb_title_id}}">{{ this.imdb_title_id }}</a>
-                        </p>
-                        <p class="card-text">Year: {{ this.year }}</p>
-                        <p class="card-text">Genre: {{ this.genre }}</p>
-                        <p class="card-text">Duration: {{ this.duration }} minutes</p>
-                        <p class="card-text">Country: {{ this.country }}</p>
-                        <p class="card-text">Language: {{ this.language }}</p>
-                        <p class="card-text">Director: {{ this.director }}</p>
-                        <p class="card-text">Writer: {{ this.writer }}</p>
-                        <p class="card-text">Actors: {{ this.actors }}</p>
-                        <p class="card-text">Description: {{ this.description }}</p>
+                </div><br />
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <img class="card-img-top" src="{{../moviePoster}}" alt="Poster Image"
+                                style="width: 30em; height: auto;" />
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Year</th>
+                                            <td>{{ this.year }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Genre</th>
+                                            <td>{{ this.genre }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Duration</th>
+                                            <td>{{ this.duration }} minutes</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Country</th>
+                                            <td>{{ this.country }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Language</th>
+                                            <td>{{ this.language }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Director</th>
+                                            <td>{{ this.director }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Writer</th>
+                                            <td>{{ this.writer }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Actors</th>
+                                            <td>{{ this.actors }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Description</th>
+                                            <td>{{ this.description }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {{else}}
+                                <h3 class="card-text">Sorry bud, can't find what you want :(</h3>
+                            </div>
+                            {{/each}} <br />
+                            <a href="./" class="btn btn-danger">
+                                <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block"
+                                    width="20" height="20" />
+                                Go Back</a>
+                            <a href="https://www.imdb.com/title/{{key}}" class="btn btn-warning">IMDb
+                                Page</a>
+                            <a href="#" class="btn btn-success">Mine Movie</a>
+                        </div>
                     </div>
-                    <br />
-                    {{else}}
-                    <h3>Sorry bud, can't find what you want :(</h3>
-                    {{/each}}
+
                 </div>
             </div>
-            <a href="./" class="btn btn-danger">
-                <img src="https://svgshare.com/i/KL6.svg" alt="back icon" class="d-inline-block" width="20"
-                    height="20" />
-                Go Back</a>
-            <a href="#" class="btn btn-success">Mine Movie</a>
         </div>
     </div>
 </div>

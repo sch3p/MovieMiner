@@ -33,7 +33,8 @@ router.get('/view', async function(req, res, next) {
 
         res.render('viewMovie', {
             theMovie: results,
-            moviePoster: poster
+            moviePoster: poster,
+            key: key
         }); 
 
     });
