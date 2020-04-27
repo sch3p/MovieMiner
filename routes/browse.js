@@ -7,6 +7,7 @@ var router = express.Router();
 
 // various spells to get movie info
 const Movie = require('../models/Movie');
+const UserActions = require('../models/userActions');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
@@ -30,7 +31,7 @@ router.get('/view', async function(req, res, next) {
     var poster = await Movie.fetchPoster(key);
     console.log('--- URL found ---');
     console.log(poster);
-
+    //await UserActions.getReviews(key);
     await Movie.viewSingleMovie(key, function(results) {
 
         res.render('viewMovie', {

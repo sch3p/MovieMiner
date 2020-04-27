@@ -22,6 +22,18 @@
 //         console.log(JSON.stringify(review, null, 1));
 //         return review;
 //     }
+
+//     static async getReviews(key){
+//         console.log('--- In the getReviews function ---');
+//             var query = { imdbID: key };
+//             var dbo = new dbService.constructor();
+//             dbo.init();
+//             // var hello =  dbo.db;
+//             await dbo.collection("userActions").find(query).toArray(function(err, result) {
+//             console.log(result);
+//             db.close();
+//         });
+//     }
 // }
 
 // module.exports = UserActions;
