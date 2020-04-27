@@ -79,7 +79,7 @@ class Movie {
                 console.log('--- QUERY RESULT ---');
                 console.log(results);
                 callback(results);
-            }   
+            }
         );
     }
 
