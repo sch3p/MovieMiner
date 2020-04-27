@@ -1,7 +1,7 @@
 // DB Depends
 const connection = require('../services/sql');
-// const omdb = require('omdb');
-// const omdb = new (require('omdbapi'))(process.env.OMDB_API_KEY);
+
+// OMDB API
 const fetch = require("node-fetch");
 const key = process.env.OMDB_API_KEY;
 
@@ -32,23 +32,7 @@ class Movie {
         );
     }
 
-    // static async getMoviePoster(id) {
-    //     console.log('--- in getMoviePoster function ---');
-
-    //     // var posterURL = '';
-
-    //     omdb.get({
-    //         id: id
-    //     }).then(res => {
-    //         console.log('--- Response from OMDB ---');
-    //         console.log(res);
-    //         console.log(`--- Poster URL FOUND for ${id}---`);
-    //         console.log(res.poster);
-    //         return res.poster;
-    //     }).catch(console.error);
-    // }
-
-    static async putPosters(movieObjs) {
+    static async gatherPosters(movieObjs) {
 
         console.log('--- in putPosters function ---');
         console.log(movieObjs);
@@ -56,7 +40,7 @@ class Movie {
         // get poster url and put into array
         let moviePosters = [];
             
-        for (var i = 0; i <= 5; ++i) {
+        for (var i = 0; i <= 4; ++i) {
             let id = movieObjs[i].imdb_title_id;
             console.log('--- Finding current ID ---');
             console.log(id);

@@ -12,7 +12,9 @@ const Movie = require('../models/Movie');
 router.get('/', async function(req, res, next) {
     await Movie.browseMovies(function(results){
 
-        var moviePosterArray = Movie.putPosters(results);
+        let moviePosterArray = [];
+        let arrayData = Movie.gatherPosters(results);
+        moviePosterArray.push(arrayData);
 
         res.render('browse', {
             message: 'What are we mining today?',
