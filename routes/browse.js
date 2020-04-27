@@ -24,10 +24,13 @@ router.get('/view', async function(req, res, next) {
 
     var key = req.query.key;
     var poster = await Movie.fetchPoster(key);
-    var reviews = await UserActions.getReviews(key);
+    var results = await UserActions.getReviews(key);
     console.log('--- URL found ---');
     console.log(poster);
-
+    var reviews = results.Reviews;
+    var ratings = results.Ratings;
+    console.log(reviews);
+    console.log(ratings);
     await Movie.viewSingleMovie(key, function(results) {
 
         res.render('viewMovie', {
