@@ -14,4 +14,4 @@ Movie viewer that uses data from IMDB and OMDB
 
 ## Hosting on GCP App Engine
 
-[https://cit412-noaschep-blackhole.ue.r.appspot.com/](https://cit412-noaschep-blackhole.ue.r.appspot.com/)
+[https://cit412-movie-miner.ue.r.appspot.com](https://cit412-movie-miner.ue.r.appspot.com)
