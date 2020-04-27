@@ -28,7 +28,7 @@ class Movie {
     static async viewSingleMovie(id, callback) {
         console.log(`--- In viewSingleMovie function ---`);
         console.log(`--- Key found: ${id} ---`);
-        connection.query(`SELECT * FROM IMDbMovies where imdb_title_id LIKE '%${id}%'`,
+        connection.query(`SELECT * FROM IMDbMoviesNew where imdb_title_id LIKE '%${id}%'`,
             function(error, results, fields){
                 if (error) throw error;
                 console.log('--- QUERY RESULT USING KEY ---');
@@ -71,7 +71,7 @@ class Movie {
 
     static async browseMovies(callback) {
         console.log(`--- In browseMovies function ---`);
-        connection.query(`SELECT imdb_title_id, title FROM IMDbMovies ORDER BY RAND() LIMIT 5;`,
+        connection.query(`SELECT imdb_title_id, title FROM IMDbMoviesNew ORDER BY RAND() LIMIT 5;`,
             function(error, results, fields){
                 if (error) throw error;
                 console.log('--- QUERY RESULT ---');
@@ -84,7 +84,7 @@ class Movie {
     static async searchMovie(searchIn, callback) {
         console.log(`--- In searchMovie function ---`);
         console.log(`--- Search term found: ${searchIn} ---`)
-        connection.query(`SELECT * FROM IMDbMovies where imdb_title_id LIKE '%${searchIn}%' OR title LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%'`,
+        connection.query(`SELECT * FROM IMDbMoviesNew where imdb_title_id LIKE '%${searchIn}%' OR title LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%'`,
             function(error, results, fields){
                 if (error) throw error;
                 console.log('--- QUERY RESULT ---');
