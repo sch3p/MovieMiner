@@ -2,7 +2,7 @@ body {
   /* padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   font-family: 'Ubuntu', sans-serif !important;
-  background-color: rgb(52,58,64) !important;
+  background-color: rgb(52, 58, 64) !important;
   animation: colorchange 10s;
   -webkit-animation: colorchange 10s;
 }
@@ -13,12 +13,12 @@ body {
   text-align: center;
 }
 
-.parent > img {
+.parent>img {
   vertical-align: middle;
 }
 
-.parent > h4 {
-    display:inline-block;
+.parent>h4 {
+  display: inline-block;
 }
 
 a {
@@ -44,7 +44,10 @@ a {
   -webkit-transition-property: transform;
   transition-property: transform;
 }
-.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
@@ -55,21 +58,25 @@ a {
     -webkit-transform: translateX(3px) rotate(2deg);
     transform: translateX(3px) rotate(2deg);
   }
+
   100% {
     -webkit-transform: translateX(-3px) rotate(-2deg);
     transform: translateX(-3px) rotate(-2deg);
   }
 }
+
 @keyframes hvr-buzz {
   50% {
     -webkit-transform: translateX(3px) rotate(2deg);
     transform: translateX(3px) rotate(2deg);
   }
+
   100% {
     -webkit-transform: translateX(-3px) rotate(-2deg);
     transform: translateX(-3px) rotate(-2deg);
   }
 }
+
 .hvr-buzz {
   display: inline-block;
   vertical-align: middle;
@@ -77,7 +84,10 @@ a {
   transform: perspective(1px) translateZ(0) rotate(-10deg);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-.hvr-buzz:hover, .hvr-buzz:focus, .hvr-buzz:active {
+
+.hvr-buzz:hover,
+.hvr-buzz:focus,
+.hvr-buzz:active {
   -webkit-animation-name: hvr-buzz;
   animation-name: hvr-buzz;
   -webkit-animation-duration: 0.15s;
@@ -90,20 +100,49 @@ a {
 
 /* Color Change */
 
-@keyframes colorchange
-    {
-      0%   {background: rgb(52,58,64);}
-      25%  {background: rgb(62, 69, 77);}
-      50%  {background: rgb(45, 53, 73);}
-      75%  {background: rgb(62, 69, 77);}
-      100% {background: rgb(52,58,64);}
-    }
+@keyframes colorchange {
+  0% {
+    background: rgb(52, 58, 64);
+  }
 
-    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-    {
-      0%   {background: rgb(52,58,64);}
-      25%  {background: rgb(62, 69, 77);}
-      50%  {background: rgb(45, 53, 73);}
-      75%  {background: rgb(62, 69, 77);}
-      100% {background: rgb(52,58,64);}
-    }
+  25% {
+    background: rgb(62, 69, 77);
+  }
+
+  50% {
+    background: rgb(45, 53, 73);
+  }
+
+  75% {
+    background: rgb(62, 69, 77);
+  }
+
+  100% {
+    background: rgb(52, 58, 64);
+  }
+}
+
+@-webkit-keyframes colorchange
+
+/* Safari and Chrome - necessary duplicate */
+  {
+  0% {
+    background: rgb(52, 58, 64);
+  }
+
+  25% {
+    background: rgb(62, 69, 77);
+  }
+
+  50% {
+    background: rgb(45, 53, 73);
+  }
+
+  75% {
+    background: rgb(62, 69, 77);
+  }
+
+  100% {
+    background: rgb(52, 58, 64);
+  }
+}
