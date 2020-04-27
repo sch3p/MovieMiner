@@ -16,6 +16,13 @@
                         </div>
                         <div class="col">
                             <div class="card-body">
+                                <a href="./" class="btn btn-danger">
+                                    <img src="/images/back-icon.svg" alt="back icon" class="d-inline-block" width="20"
+                                        height="20" />
+                                    Go Back</a>
+                                <a href="https://www.imdb.com/title/{{key}}" class="btn btn-warning">IMDb
+                                    Page</a>
+                                <a href="#" class="btn btn-success">Mine Movie</a><br /><br />
                                 <table class="table table-hover">
                                     <tbody>
                                         <tr>
@@ -59,18 +66,11 @@
                                 {{else}}
                                 <h3 class="card-text">Sorry bud, can't find what you want :(</h3>
                             </div>
-                            {{/each}} <br />
-                            <a href="./" class="btn btn-danger">
-                                <img src="/images/back-icon.svg" alt="back icon" class="d-inline-block"
-                                    width="20" height="20" />
-                                Go Back</a>
-                            <a href="https://www.imdb.com/title/{{key}}" class="btn btn-warning">IMDb
-                                Page</a>
-                            <a href="#" class="btn btn-success">Mine Movie</a>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br />
             </div>
         </div>
     </div>
