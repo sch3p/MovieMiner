@@ -26,14 +26,14 @@ class UserActions {
     static async getReviews(key){
         console.log('--- In the getReviews function ---');
         console.log(key);
-        const result = await dbService.db.collection('userActions').find({imdbID: key}).toArray();
+        const result = await dbService.db.collection('userActions').findOne({imdbID: key});
             //const result = await dbService.db.collection("userActions").find({imdbID:key}).toArray(function(err, result) {
         //     console.log(result);
         //     db.close();
         // });
 
         
-        console.log(result);
+        //console.log(result);
         return result;
     }
 }
