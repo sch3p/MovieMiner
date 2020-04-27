@@ -11,7 +11,11 @@ router.post('/', async (req, res, next) => {
     var key = req.body.search;
 
     try {
-        await Movie.searchMovie(key, function(results) {
+        await Movie.searchMovie(key, async function(results) {
+
+            // combine data with poster images
+            var everything = await Movie.gatherPosters(results);
+
             // Render based on how many were found on search
             if (results.length == 0) {
                 console.log('--- No movies found on search ---');
@@ -22,7 +26,7 @@ router.post('/', async (req, res, next) => {
                 res.redirect(`./browse/view?key=${results[0].imdb_title_id}`);
             } else {
                 res.render(`search`, {
-                    theMovie: results,
+                    theMovie: everything,
                     imdb_title_id: key
                 });
             }

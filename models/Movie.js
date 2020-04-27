@@ -15,8 +15,14 @@ class Movie {
         console.log(`--- Getting poster from ${url}`);
 
         var result = await response.json();
-
-        return result.Poster;
+        
+        // Replace with dummy poster if none found
+        if (result.Poster == 'N/A') {
+            result.Poster = '/images/not_found.png';
+            return result.Poster;
+        } else {
+            return result.Poster;
+        }
     }
 
     static async viewSingleMovie(id, callback) {
@@ -40,7 +46,7 @@ class Movie {
         // get poster url and put into array
         // let moviePosters = [];
             
-        for (var i = 0; i <= 4; ++i) {
+        for (var i = 0; i <= movieObjs.length-1; ++i) {
             let id = movieObjs[i].imdb_title_id;
             console.log('--- Finding current ID ---');
             console.log(id);
@@ -48,12 +54,16 @@ class Movie {
             console.log('--- URL Found ---');
             console.log(poster)
             // Add poster url to its array object
-            movieObjs[i].poster = poster;
+            // Replace with dummy poster if none found
+            if (poster == 'N/A') {
+                movieObjs[i].poster = '/images/not_found.png'
+            } else {
+                movieObjs[i].poster = poster;
+            }
             console.log('--- New poster added to array ---');
             // console.log(moviePosters[i]);
         }
 
-        // var moviePoster = Movie.getMoviePoster(movieID);
         console.log('--- Added movie posters result ---');
         console.log(movieObjs);
         return movieObjs;
@@ -74,7 +84,7 @@ class Movie {
     static async searchMovie(searchIn, callback) {
         console.log(`--- In searchMovie function ---`);
         console.log(`--- Search term found: ${searchIn} ---`)
-        connection.query(`SELECT * FROM IMDbMovies where imdb_title_id LIKE '%${searchIn}%' OR title LIKE '%${searchIn}%' OR year LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR country LIKE '%${searchIn}%' OR language LIKE '%${searchIn}%' OR director LIKE '%${searchIn}%' OR writer LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%' OR description LIKE '%${searchIn}%'`,
+        connection.query(`SELECT * FROM IMDbMovies where imdb_title_id LIKE '%${searchIn}%' OR title LIKE '%${searchIn}%' OR genre LIKE '%${searchIn}%' OR actors LIKE '%${searchIn}%'`,
             function(error, results, fields){
                 if (error) throw error;
                 console.log('--- QUERY RESULT ---');

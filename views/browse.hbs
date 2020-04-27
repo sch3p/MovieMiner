@@ -8,12 +8,12 @@
             <p>Take a look at these "random" movies</p>
             <br />
             <div class="row">
+
                 {{#each someMovies}}
                 <div class="col text-center mx-auto">
                     <a href="/browse/view?key={{ this.imdb_title_id }}" class="hvr-grow">
-                        <img src="{{this.poster}}" alt="Poster Image"
-                            style="width: 10em; height: auto;"/>
-                    </a><br/><br/>
+                        <img src="{{this.poster}}" alt="Poster Image" style="width: 100%; height: auto;" />
+                    </a><br /><br />
                     <p>{{ this.title }}</p>
                 </div>
                 {{/each}}

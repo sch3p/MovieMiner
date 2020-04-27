@@ -10,14 +10,26 @@
                 <div class="card-header">
                     {{ this.title }}
                 </div>
-                <img class="card-img-top" src="{{moviePoster}}" alt="Poster Image" <div class="card-body">
-                <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
-                <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View Movie</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <img class="card-img-top" src="{{this.poster}}" alt="Poster Image"
+                                style="width:50%; height:auto;">
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <p class="card-text">IMdb ID: {{ this.imdb_title_id }}</p>
+                                <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View
+                                    Movie</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
             </div>
-            <br />
+            <br/>
             {{else}}
             <h3>Sorry bud, can't find what you want :(</h3>
             {{/each}}
         </div>
     </div>
-</div>
