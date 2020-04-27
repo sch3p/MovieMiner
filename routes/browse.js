@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 // const omdb = require('omdb');
+// const Handlebars = require("handlebars");
 
 // DB Depends --> moved to Movie model
 // const connection = require('../services/sql');
@@ -11,16 +12,13 @@ const UserActions = require('../models/userActions');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
-    await Movie.browseMovies(function(results){
+    await Movie.browseMovies(async function(results){
 
-        let moviePosterArray = [];
-        let arrayData = Movie.gatherPosters(results);
-        moviePosterArray.push(arrayData);
+        var everything = await Movie.gatherPosters(results);
 
         res.render('browse', {
             message: 'What are we mining today?',
-            someMovies: results,
-            somePosters: moviePosterArray
+            someMovies: everything,
         });    
     });
 });

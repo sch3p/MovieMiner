@@ -34,11 +34,11 @@ class Movie {
 
     static async gatherPosters(movieObjs) {
 
-        console.log('--- in putPosters function ---');
+        console.log('--- in gatherPosters function ---');
         console.log(movieObjs);
         
         // get poster url and put into array
-        let moviePosters = [];
+        // let moviePosters = [];
             
         for (var i = 0; i <= 4; ++i) {
             let id = movieObjs[i].imdb_title_id;
@@ -47,15 +47,16 @@ class Movie {
             let poster = await Movie.fetchPoster(id);
             console.log('--- URL Found ---');
             console.log(poster)
-            moviePosters[i] = poster;
+            // Add poster url to its array object
+            movieObjs[i].poster = poster;
             console.log('--- New poster added to array ---');
             // console.log(moviePosters[i]);
         }
 
         // var moviePoster = Movie.getMoviePoster(movieID);
-        console.log('--- Found movie posters ---');
-        console.log(moviePosters);
-        return moviePosters;
+        console.log('--- Added movie posters result ---');
+        console.log(movieObjs);
+        return movieObjs;
     }
 
     static async browseMovies(callback) {
