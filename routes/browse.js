@@ -3,7 +3,7 @@ var router = express.Router();
 
 // various spells to get movie info
 const Movie = require('../models/Movie');
-// const UserActions = require('../models/userActions');
+const UserActions = require('../models/userActions');
 
 /* GET browse page. */
 router.get('/', async function(req, res, next) {
@@ -24,7 +24,7 @@ router.get('/view', async function(req, res, next) {
 
     var key = req.query.key;
     var poster = await Movie.fetchPoster(key);
-    
+    var reviews = await UserActions.getReviews(key);
     console.log('--- URL found ---');
     console.log(poster);
 
@@ -33,7 +33,8 @@ router.get('/view', async function(req, res, next) {
         res.render('viewMovie', {
             theMovie: results,
             moviePoster: poster,
-            key: key
+            key: key,
+            reviews: reviews
         }); 
 
     });
