@@ -12,6 +12,12 @@ class User {
     static async addUser(userData) {
         console.log('--- In the addUser function ---');
         const newUser = await dbService.db.collection('users').insertOne(userData);
+
+        let mineData = {
+            userID: userData.id,
+            movies: []
+        };
+
         console.log('--- Finished the insertOne statement ---');
         console.log(JSON.stringify(newUser, null, 1));
         return newUser;
@@ -27,6 +33,11 @@ class User {
             console.log('--- User does NOT exist ---');
             return false;
         }
+    }
+
+    static async mineMovie(userID, key) {
+        console.log('--- In the mineMovie function ---');
+        const result = await dbService.db.collection('userData').find({})
     }
 }
 

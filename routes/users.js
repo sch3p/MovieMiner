@@ -64,8 +64,8 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     // UNCOMMENT NEXT LINE TO REDIRECT IN LOCAL ENV
-    // callbackURL: 'http://localhost:8081/users/return'
-    callbackURL: 'https://cit412-movie-miner.ue.r.appspot.com/users/return'
+    callbackURL: 'http://localhost:8081/users/return'
+    // callbackURL: 'https://cit412-movie-miner.ue.r.appspot.com/users/return'
   },
   function(accessToken, refreshToken, profile, callback) {
     // This will return the user's Google profile
