@@ -61,6 +61,14 @@
                                             <th scope="row">Description</th>
                                             <td>{{ this.description }}</td>
                                         </tr>
+                                        <tr>
+                                            <th scope="row">Ratings</th>
+                                            <td>
+                                            {{#each ratings}}
+                                            {{this.Username}}
+                                            {{/each}}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 {{else}}

@@ -11,7 +11,6 @@ router.get('/', async function(req, res, next) {
 
         var everything = await Movie.gatherPosters(results);
 
-
         res.render('browse', {
             message: 'What are we mining today?',
             someMovies: everything,
@@ -24,20 +23,22 @@ router.get('/view', async function(req, res, next) {
 
     var key = req.query.key;
     var poster = await Movie.fetchPoster(key);
-    var results = await UserActions.getReviews(key);
+    var userActions = await UserActions.getUserActions(key);
     console.log('--- URL found ---');
     console.log(poster);
-    var reviews = results.Reviews;
-    var ratings = results.Ratings;
-    console.log(reviews);
-    console.log(ratings);
+    var reviews = userActions.Reviews;
+    var ratings = userActions.Ratings;
+    var username = reviews[0].Username;
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(reviews[0]);
+    console.log(username);
     await Movie.viewSingleMovie(key, function(results) {
-
         res.render('viewMovie', {
             theMovie: results,
             moviePoster: poster,
             key: key,
-            reviews: reviews
+            reviews: reviews,
+            ratings: ratings
         }); 
 
     });
