@@ -78,7 +78,7 @@ passport.use(new GoogleStrategy({
 /**
  * This function is used in conjunction with the `passport.authenticate()` method.  See comments in
  * `passport.use()` above ^^ for explanation
- */
+ */t412-
 passport.serializeUser(function(user, callback) {
     callback(null, user);
 });
