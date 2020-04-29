@@ -54,9 +54,37 @@ router.get('/view', async function(req, res, next) {
 router.post('/addWatchLater', async function(req, res, next) {
     if (req.isAuthenticated()) {
         var username = req.user.displayName;
+        var uid = req.user.id;
         var imdbId = req.body.WatchLaterButton;
-        await UserActions.addToWatchLater(imdbId, username);
-        res.redirect(req.get('referer'));
+
+        const mined = await UserActions.getWatchLaterList(uid);
+
+        var minedArray = mined.minedMovies;
+
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+        console.log(minedArray)
+
+        console.log('--- checking if movie has been added ---')
+
+        
+
+        // returns bool based on if it exists
+        let found = minedArray.some(function(array) {
+            return array.imdb_title_id === imdbId;
+        })
+
+        console.log('$$$$$$$$$$$$$$$$$$$$$')
+        console.log(found)
+
+        // check found
+        if (found) {
+            console.log('--- Movie already added, not adding ---');
+            res.redirect(req.get('referer'));
+        } else {
+            await UserActions.addToWatchLater(imdbId, username, uid);
+            res.redirect(req.get('referer'));
+        }
+
     } else {
         res.render('user-noprofile', { title: 'Movie Miner' });
     }

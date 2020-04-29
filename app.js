@@ -11,6 +11,8 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const mongo = require('./services/db');
 
+// var expressHbs = require('express-handlebars');
+
 /**
  * -------------- DECLARE ROUTERS ----------------
  */
@@ -67,7 +69,6 @@ app.use(passport.session());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 
 /**
  * -------------- MIDDLEWARE ----------------

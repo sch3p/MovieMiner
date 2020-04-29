@@ -15,8 +15,10 @@ class User {
 
         let mineData = {
             userID: userData.id,
-            movies: []
+            minedMovies: []
         };
+
+        await dbService.db.collection('userData').insertOne(mineData); 
 
         console.log('--- Finished the insertOne statement ---');
         console.log(JSON.stringify(newUser, null, 1));
