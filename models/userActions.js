@@ -44,6 +44,16 @@ class UserActions {
         console.log('--- In the addReview function ---');
         await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Reviews":{"Username":googleId, "review":review}}});
     }
+
+    static async addRating(key, googleId, rating){
+        console.log('--- In the addReview function ---');
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Ratings":{"Username":googleId, "rating":rating}}});
+    }
+
+    static async addToWatchLater(key, displayName){
+        console.log('--- In the addReview function ---');
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Watch Later":{"Username":displayName}}});
+    }
 }
 
 module.exports = UserActions;

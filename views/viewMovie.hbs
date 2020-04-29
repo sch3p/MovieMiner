@@ -22,7 +22,10 @@
                                     Go Back</a>
                                 <a href="https://www.imdb.com/title/{{../key}}" class="btn btn-warning">IMDb
                                     Page</a>
-                                <a href="#" class="btn btn-success">Mine Movie</a><br /><br />
+                                <a href="#" class="btn btn-success">Mine Movie</a>
+                                <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/addWatchLater">
+                                    <button class="btn btn-primary" type="submit" name="WatchLaterButton" value={{../key}}>Watch Later</button>
+                                </form>
                                 <table class="table table-hover">
                                     <tbody>
                                         <tr>
@@ -95,4 +98,5 @@
                 </table>
         </div>
     </div>
+    
 </div>
