@@ -25,9 +25,24 @@ class UserActions {
 
     static async getUserActions(key){
         console.log('--- In the getUserActions function ---');
-        console.log(key);
         const result = await dbService.db.collection('userActions').findOne({imdbID: key});
         return result;
+    }
+
+    static async getAvgRating(key){
+        console.log('--- In the getAvgRating function ---');
+        const result = await dbService.db.collection('userActions').findOne({imdbID: key});
+        var avgRating = 0;
+        for (var i = 0; i < result.Ratings.length; i++){
+            avgRating = avgRating + parseFloat(result.Ratings[i].rating);
+        }
+        avgRating = avgRating/(result.Ratings.length);
+        return avgRating;
+    }
+
+    static async addReview(key, googleId, review){
+        console.log('--- In the addReview function ---');
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Reviews":{"Username":googleId, "review":review}}});
     }
 }
 

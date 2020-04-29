@@ -28,17 +28,21 @@ router.get('/view', async function(req, res, next) {
     console.log(poster);
     var reviews = userActions.Reviews;
     var ratings = userActions.Ratings;
-    var username = reviews[0].Username;
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    console.log(reviews[0]);
-    console.log(username);
+    // var username = reviews[0].Username;
+     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+     console.log(reviews[0].Username);
+    // console.log(username);
+    //await UserActions.addReview(key,"movie_fanatick232", "wow this is an amazing movie, the weasels were very scary.");
+    var avgRating = await UserActions.getAvgRating(key);
+    avgRating = avgRating.toFixed(1);
     await Movie.viewSingleMovie(key, function(results) {
         res.render('viewMovie', {
             theMovie: results,
             moviePoster: poster,
             key: key,
             reviews: reviews,
-            ratings: ratings
+            ratings: ratings,
+            avgRating: avgRating
         }); 
 
     });
