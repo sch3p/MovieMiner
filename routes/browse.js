@@ -30,6 +30,7 @@ router.get('/view', async function(req, res, next) {
         var reviews = userActions.Reviews;
         var ratings = userActions.Ratings;
         var avgRating = await UserActions.getAvgRating(key);
+        var watchLaterLength = await UserActions.getWatchLaterLength(key);
         avgRating = avgRating.toFixed(1);
         
         var document = await Movie.viewSingleMovie(key, function(results) {
@@ -39,7 +40,8 @@ router.get('/view', async function(req, res, next) {
                 key: key,
                 reviews: reviews,
                 ratings: ratings,
-                avgRating: avgRating
+                avgRating: avgRating,
+                watchLater : watchLaterLength
             }); 
     });
     //   } else {
