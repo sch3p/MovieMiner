@@ -40,14 +40,14 @@ class UserActions {
         return avgRating;
     }
 
-    static async addReview(key, googleId, review){
+    static async addReview(key, displayName, review){
         console.log('--- In the addReview function ---');
-        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Reviews":{"Username":googleId, "review":review}}});
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Reviews":{"Username":displayName, "review":review}}});
     }
 
-    static async addRating(key, googleId, rating){
+    static async addRating(key, displayName, rating){
         console.log('--- In the addReview function ---');
-        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Ratings":{"Username":googleId, "rating":rating}}});
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Ratings":{"Username":displayName, "rating":rating}}});
     }
 
     static async addToWatchLater(key, displayName){

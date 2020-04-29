@@ -84,6 +84,11 @@
                 </div><br />
                 <table class="table">
                     <tbody>
+                    <form method="POST" class="form-inline my-2 my-lg-0" action="/addReview">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Write a review" aria-label="addReview"
+                        name="addReview">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Submit</button>
+                    </form>
                     {{#each reviews}}
                         <tr>
                             <td>{{ this.Username }}<br />{{this.review}}</td>

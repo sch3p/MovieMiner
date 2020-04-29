@@ -52,4 +52,11 @@ router.post('/addWatchLater', async function(req, res, next) {
     await UserActions.addToWatchLater(imdbId, username);
 });
 
+router.post('/addReview', async function(req, res, next) {
+    var username = req.user.displayName;
+    var imdbId = req.body.WatchLaterButton;
+    res.redirect('/browse/view?key='+imdbId);
+    await UserActions.addToWatchLater(imdbId, username);
+});
+
 module.exports = router;
