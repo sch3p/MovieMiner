@@ -54,26 +54,33 @@ router.post('/addWatchLater', async function(req, res, next) {
         var username = req.user.displayName;
         var imdbId = req.body.WatchLaterButton;
         await UserActions.addToWatchLater(imdbId, username);
-        res.redirect('/browse/view?key='+imdbId);
+        res.redirect(req.get('referer'));
     } else {
         res.render('user-noprofile', { title: 'Movie Miner' });
     }
 });
 
 router.post('/addReview', async function(req, res, next) {
-    // if (req.isAuthenticated()) {
-    //     var username = req.user.displayName;
-            console.log("@@@@@@@@@@@@@@@@@@@@@@");
+    if (req.isAuthenticated()) {
+        var username = req.user.displayName;
         var review = req.body.addReview;
         var imdbId = req.body.submitReview;
-        console.log(review);
-        console.log(imdbId);
-        console.log("@@@@@@@@@@@@@@@@@@");
-        await UserActions.addReview(imdbId, "Danielle Gill", review);
-        res.redirect('/browse/view?key='+imdbId);
-    // } else {
-    //     res.render('user-noprofile', { title: 'Movie Miner' });
-    // }
+        await UserActions.addReview(imdbId, username, review);
+        res.redirect(req.get('referer'));
+    } else {
+        res.render('user-noprofile', { title: 'Movie Miner' });
+    }
+});
+
+router.post('/addRating', async function(req, res, next) {
+    if (req.isAuthenticated()) {
+        var username = req.user.displayName;
+        var rating = req.body.submitRating; //this will need a matching thing in viewMovie
+        await UserActions.addRating(imdbId, username, rating);
+        res.redirect(req.get('referer'));
+    } else {
+        res.render('user-noprofile', { title: 'Movie Miner' });
+    }
 });
 
 module.exports = router;
