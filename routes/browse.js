@@ -30,7 +30,7 @@ router.get('/view', async function(req, res, next) {
         var reviews = userActions.Reviews;
         var ratings = userActions.Ratings;
         var avgRating = await UserActions.getAvgRating(key);
-        var watchLaterLength = await UserActions.getWatchLaterLength(key);
+        var minedMoviesLength = await UserActions.getMinedMoviesLength(key);
         avgRating = avgRating.toFixed(1);
         
         var document = await Movie.viewSingleMovie(key, function(results) {
@@ -41,7 +41,7 @@ router.get('/view', async function(req, res, next) {
                 reviews: reviews,
                 ratings: ratings,
                 avgRating: avgRating,
-                watchLater : watchLaterLength
+                minedMoviesLength : minedMoviesLength
             }); 
     });
     //   } else {
@@ -51,13 +51,13 @@ router.get('/view', async function(req, res, next) {
     
 });
 
-router.post('/addWatchLater', async function(req, res, next) {
+router.post('/mineMovie', async function(req, res, next) {
     if (req.isAuthenticated()) {
         var username = req.user.displayName;
         var uid = req.user.id;
-        var imdbId = req.body.WatchLaterButton;
+        var imdbId = req.body.mineMovieButton;
 
-        const mined = await UserActions.getWatchLaterList(uid);
+        const mined = await UserActions.getMinedMovies(uid);
 
         var minedArray = mined.minedMovies;
 
@@ -81,7 +81,7 @@ router.post('/addWatchLater', async function(req, res, next) {
             console.log('--- Movie already added, not adding ---');
             res.redirect(req.get('referer'));
         } else {
-            await UserActions.addToWatchLater(imdbId, username, uid);
+            await UserActions.mineMovie(imdbId, username, uid);
             res.redirect(req.get('referer'));
         }
 

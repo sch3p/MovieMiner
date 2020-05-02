@@ -22,8 +22,8 @@
                                     Go Back</a>
                                 <a href="https://www.imdb.com/title/{{../key}}" class="btn btn-warning">IMDb
                                     Page</a>
-                                <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/addWatchLater">
-                                    <button class="btn btn-success" type="submit" name="WatchLaterButton" value={{../key}}>Mine Movie</button>
+                                <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/mineMovie">
+                                    <button class="btn btn-success" type="submit" name="mineMovieButton" value={{../key}}>Mine Movie</button>
                                 </form>
                                 <table class="table table-hover">
                                     <tbody>
@@ -33,7 +33,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Times Mined</th>
-                                            <td>{{../watchLater }}</td>
+                                            <td>{{../minedMoviesLength }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Year</th>
