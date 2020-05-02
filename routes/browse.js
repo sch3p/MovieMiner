@@ -55,13 +55,13 @@ router.post('/addWatchLater', async function(req, res, next) {
     if (req.isAuthenticated()) {
         var username = req.user.displayName;
         var uid = req.user.id;
+        
         var imdbId = req.body.WatchLaterButton;
 
         const mined = await UserActions.getWatchLaterList(uid);
 
         var minedArray = mined.minedMovies;
 
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
         console.log(minedArray)
 
         console.log('--- checking if movie has been added ---')

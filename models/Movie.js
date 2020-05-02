@@ -25,6 +25,18 @@ class Movie {
         }
     }
 
+    static async fetchOMDB(id) {
+        console.log('--- in fetchOMDB function ---')
+        let url = `http://www.omdbapi.com/?apikey=${key}&i=${id}`;
+        let response = await fetch(url);
+
+        console.log(`--- Getting poster from ${url}`);
+
+        var result = await response.json();
+        
+        return result.Title;
+    }
+
     static async viewSingleMovie(id, callback) {
         console.log(`--- In viewSingleMovie function ---`);
         console.log(`--- Key found: ${id} ---`);
@@ -48,6 +60,8 @@ class Movie {
             
         for (var i = 0; i <= movieObjs.length-1; ++i) {
             let id = movieObjs[i].imdb_title_id;
+            // let title = movieObjs[i].title;
+            let title = await Movie.fetchOMDB(id)
             console.log('--- Finding current ID ---');
             console.log(id);
             let poster = await Movie.fetchPoster(id);
@@ -59,6 +73,7 @@ class Movie {
                 movieObjs[i].poster = '/images/not_found.png'
             } else {
                 movieObjs[i].poster = poster;
+                movieObjs[i].title = title;
             }
             console.log('--- New poster added to array ---');
             // console.log(moviePosters[i]);

@@ -31,10 +31,25 @@ class UserActions {
         return result;
     }
 
+    static async removeWatchLaterItem(userID, key) {
+        console.log('--- In the removeWatchLaterItem function ---');
+        try {
+            await dbService.db.collection('userData').updateOne({userID: userID},
+                {$pull:{minedMovies:{imdb_title_id: key}}}
+            );
+            console.log('--- User mined item: ', key, ' has been removed successfully ---');
+            return true;
+        } catch(err) {
+            console.log('--- Error removing ID ', key, ' ---')
+            console.log(err)
+            return false;
+        }
+    }
+
     static async getWatchLaterLength(key){
         console.log('--- In the getWatchLater function ---');
         const result = await dbService.db.collection('userActions').findOne({imdbID: key});
-        return result.WatchLater.length;
+        return result.MinedMovies.length;
     }
 
     static async addReview(key, displayName, review){
@@ -49,7 +64,7 @@ class UserActions {
 
     static async addToWatchLater(key, displayName, uid){
         console.log('--- In the addToWatchLater function ---');
-        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{"Watch Later":{"Username":displayName}}});
+        await dbService.db.collection('userActions').updateOne({imdbID: key},{$push:{MinedMovies:{Username:displayName}}});
         await dbService.db.collection('userData').updateOne({userID: uid},{$push:{minedMovies:{"imdb_title_id":key}}});
     }
 }

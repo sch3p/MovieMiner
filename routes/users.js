@@ -8,28 +8,11 @@ const Handlebars = require("handlebars");
 const Movie = require('../models/Movie');
 const UserActions = require('../models/userActions');
 
-var expressHbs =  require('express-handlebars');
+// var expressHbs =  require('express-handlebars');
 
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
-
-  var hbs = expressHbs.create({});
-
-  hbs.handlebars.registerHelper('grouped_each', function(every, context, options) {
-    var out = "", subcontext = [], i;
-    if (context && context.length > 0) {
-        for (i = 0; i < context.length; i++) {
-            if (i > 0 && i % every === 0) {
-                out += options.fn(subcontext);
-                subcontext = [];
-            }
-            subcontext.push(context[i]);
-        }
-        out += options.fn(subcontext);
-    }
-    return out;
-  });
 
   if (req.isAuthenticated()) {
   
@@ -38,14 +21,13 @@ router.get('/', async function(req, res, next) {
     const mined = await UserActions.getWatchLaterList(userID);
 
     var minedArray = mined.minedMovies;
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-
-    
-
+  
     var everything = await Movie.gatherPosters(minedArray);
     console.log(everything)
+
     niceUser = new User(req.user);
     console.log('--- Email: ' + req.user.emails[0].value + ' ---');
+
     res.render('user-profile', {
       user: niceUser,
       title: 'Movie Miner',
@@ -55,6 +37,21 @@ router.get('/', async function(req, res, next) {
   } else {
     res.render('user-noprofile', { title: 'Movie Miner' });
   }
+});
+
+// GET mined movie id to remove from user list
+router.post('/removeGem', async function(req, res, next) {
+  var uid = req.user.id;
+  var imdbId = req.body.RemoveWatchLaterButton;
+
+  var isRemoved = await UserActions.removeWatchLaterItem(uid, imdbId);
+  console.log('############### ', isRemoved)
+  
+  var inWatchedID = req.body.WatchLaterButton;
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+    console.log(inWatchedID);
+
+  res.redirect(req.get('referer'));
 });
 
 /* GET login request */

@@ -1,8 +1,20 @@
+<script>
+    // Successfully added alert
+  $('#success-alert').click(function () {
+    $('#alert-container').bootstrapAlert({
+      type: 'success',
+      message: `Movie ID <b>{{key}}</b> successfully added.`
+    });
+  });
+</script>
+
+
 <br /><br /><br />
 <div class="h-100 row text-light parent">
     <div class="col parent">
         <br />
         <div style="width: 80vw;">
+            <div id="alert-container"></div>
             {{#each theMovie}}
             <div class="card bg-light text-dark text-center mx-auto">
                 <div class="card-header">
@@ -16,15 +28,16 @@
                         </div>
                         <div class="col">
                             <div class="card-body">
-                                <a href="./" class="btn btn-danger">
-                                    <img src="/images/back-icon.svg" alt="back icon" class="d-inline-block" width="20"
-                                        height="20" />
-                                    Go Back</a>
-                                <a href="https://www.imdb.com/title/{{../key}}" class="btn btn-warning">IMDb
-                                    Page</a>
-                                <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/addWatchLater">
-                                    <button class="btn btn-success" type="submit" name="WatchLaterButton" value={{../key}}>Mine Movie</button>
-                                </form>
+                                <form method="POST" action="/browse/addWatchLater">
+                                    <a href="./" class="btn btn-danger">
+                                        <img src="/images/back-icon.svg" alt="back icon" class="d-inline-block"
+                                            width="20" height="20" />
+                                        Go Back</a>
+                                    <a href="https://www.imdb.com/title/{{../key}}" class="btn btn-warning">IMDb
+                                        Page</a>
+                                    <button class="btn btn-success" type="submit" name="WatchLaterButton"
+                                        value={{../key}} id="success-alert">Mine Movie</button>
+                                </form><br/>
                                 <table class="table table-hover">
                                     <tbody>
                                         <tr>
@@ -82,29 +95,31 @@
                 </div>
                 <br />
             </div>
-                <div class="card-header">
-                    <h4>Reviews and Ratings</h4>
-                </div><br />
-                <table class="table">
-                    <tbody>
+            <div class="card-header">
+                <h4>Reviews and Ratings</h4>
+            </div><br />
+            <table class="table">
+                <tbody>
                     <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/addReview">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Write a review" aria-label="addReview" name="addReview">
-                        <button class="btn btn-secondary" type="submit" name="submitReview" value={{key}}>Submit</button>
+                        <input class="form-control mr-sm-2" type="text" placeholder="Write a review"
+                            aria-label="addReview" name="addReview">
+                        <button class="btn btn-secondary" type="submit" name="submitReview"
+                            value={{key}}>Submit</button>
                     </form>
                     <p>{{../key}}</p>
                     {{#each reviews}}
-                        <tr>
-                            <td>{{ this.Username }}<br />{{this.review}}</td>
-                        </tr>
+                    <tr>
+                        <td>{{ this.Username }}<br />{{this.review}}</td>
+                    </tr>
                     {{/each}}
                     {{#each ratings}}
-                        <tr>
-                            <td>{{ this.Username }}<br />{{this.rating}} out of 5</td>
-                        </tr>
+                    <tr>
+                        <td>{{ this.Username }}<br />{{this.rating}} out of 5</td>
+                    </tr>
                     {{/each}}
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
 </div>
