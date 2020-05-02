@@ -146,3 +146,11 @@ a {
     background: rgb(52, 58, 64);
   }
 }
+
+/* HR style */
+
+hr.hr-17 {
+  border: 0;
+  height: 0;
+  box-shadow: 0 0 10px 1px black;
+}
