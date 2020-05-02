@@ -18,7 +18,7 @@ router.get('/', async function(req, res, next) {
   
     var userID = req.user.id;
   
-    const mined = await UserActions.getWatchLaterList(userID);
+    const mined = await UserActions.getMinedMovies(userID);
 
     var minedArray = mined.minedMovies;
   
