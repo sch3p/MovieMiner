@@ -29,12 +29,26 @@ router.get('/view', async function(req, res, next) {
         console.log(poster);
         var reviews = userActions.Reviews;
         var ratings = userActions.Ratings;
+        var uid = req.user.id;
         var avgRating = await UserActions.getAvgRating(key);
         var minedMoviesLength = await UserActions.getMinedMoviesLength(key);
         avgRating = avgRating.toFixed(1);
-        
-        var document = await Movie.viewSingleMovie(key, function(results) {
+
+        console.log('--- checking if movie has been added ---')
+        const mined = await UserActions.getMinedMovies(uid);
+        var minedArray = mined.minedMovies;
+
+        // returns bool based on if it exists
+        var found = minedArray.some(function(array) {
+            return array.imdb_title_id === key;
+        });
+
+        console.log('*************************************************')
+        console.log(found);
+
+        await Movie.viewSingleMovie(key, async function(results) {
             res.render('viewMovie', {
+                alreadyAdded: found,
                 theMovie: results,
                 moviePoster: poster,
                 key: key,
@@ -43,12 +57,7 @@ router.get('/view', async function(req, res, next) {
                 avgRating: avgRating,
                 minedMoviesLength : minedMoviesLength
             }); 
-    });
-    //   } else {
-    //     res.render('user-noprofile', { title: 'Movie Miner' });
-    //   }
-
-    
+    });    
 });
 
 router.post('/mineMovie', async function(req, res, next) {
@@ -64,8 +73,6 @@ router.post('/mineMovie', async function(req, res, next) {
         console.log(minedArray)
 
         console.log('--- checking if movie has been added ---')
-
-        
 
         // returns bool based on if it exists
         let found = minedArray.some(function(array) {

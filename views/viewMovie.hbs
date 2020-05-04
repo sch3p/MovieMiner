@@ -24,8 +24,14 @@
                                         Go Back</a>
                                     <a href="https://www.imdb.com/title/{{../key}}" class="btn btn-warning">IMDb
                                         Page</a>
+                                    {{#if ../alreadyAdded}}
+                                    <button class="btn btn-success" name="mineMovieButton" disabled>
+                                        <i class="fas fa-check"></i>Added
+                                    </button>
+                                    {{else}}
                                     <button class="btn btn-success" type="submit" name="mineMovieButton"
-                                        value={{../key}} id="success-alert">Mine Movie</button>
+                                        value={{../key}} id="mineMovieButton">Mine Movie</button>                                    
+                                    {{/if}}
                                 </form><br />
                                 <table class="table table-hover">
                                     <tbody>
