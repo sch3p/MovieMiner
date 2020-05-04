@@ -4,7 +4,8 @@
 <head>
   <title>{{title}}</title>
   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -15,51 +16,61 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="/">
-      <img src="https://wiki.melvoridle.com/images/1/1f/Iron_Pickaxe_%28upgrade%29.svg" width="30" height="30"
-        class="d-inline-block align-top hvr-buzz" alt="">
-      Movie Miner
+<body class="Site">
+  <main class="Site-content">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/">
+        <img src="https://wiki.melvoridle.com/images/1/1f/Iron_Pickaxe_%28upgrade%29.svg" width="30" height="30"
+          class="d-inline-block align-top hvr-buzz" alt="">
+        Movie Miner
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/browse">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">User</a>
+          </li>
+        </ul>
+        <form method="POST" class="form-inline my-2 my-lg-0" action="/search">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search Movies" aria-label="Search" name="search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    {{{body}}}
+    {{!-- jQuery JS --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    {{!-- Bootstrap JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    {{!-- Star Rating JS --}}
+    <script src="/starRating/star-rating.min.js" type="text/javascript"></script>
+
+  </main>
+  <div class="footer">
+    crafted with &nbsp;
+    <a href="/sans">
+      <img src="/images/ut-heart.png" height="20px" width="20px" />
     </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/browse">Browse</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users">User</a>
-        </li>
-      </ul>
-      <form method="POST" class="form-inline my-2 my-lg-0" action="/search">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search Movies" aria-label="Search" name="search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  {{{body}}}
-  {{!-- jQuery JS --}}
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-  </script>
-  {{!-- Bootstrap JS --}}
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-  </script>
-  {{!-- Star Rating JS --}}
-  <script src="/starRating/star-rating.min.js" type="text/javascript"></script>
+  </div>
+  <br/>
 </body>
 
 </html>

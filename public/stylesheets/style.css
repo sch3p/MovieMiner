@@ -222,3 +222,25 @@ hr.hr-17 {
   color: #000;
   text-shadow: 0 0 5px #09f;
 }
+
+/* FOOTER.. */
+.footer {
+  /* position: fixed; */
+  left: 0;
+  margin: 0 auto;
+  bottom: 5px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-family: "Comic Sans MS" !important;
+}
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}

@@ -1,56 +1,52 @@
-{{!-- <script>
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
-</script> --}}
-
 <br /><br /><br />
-<div class="h-100 row align-items-center text-light">
+<div class="h-100 row text-light parent">
     <div class="col parent">
         <br />
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <img src='{{user.userImage}}'
-                        style="border-radius: 50%; height: 50px; width: 50px; display: inline;" />
-                    <h4>{{ user.givenName }}'s Profile</h4>
+        <div style="width: 80vw;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <img src='{{user.userImage}}'
+                            style="border-radius: 50%; height: 50px; width: 50px; display: inline;" />
+                        <h4>{{ user.givenName }}'s Profile</h4>
 
-                    <p>{{user.email}}</p>
-                </div>
-                <div class="col">
-                    <form action="#">
-                        <button type="submit" class="btn btn-warning">Account</button>
-                    </form><br />
-                    {{!-- Page will load with results on movies are removed from mined movie array --}}
-                    <form action="#">
-                        <button type="submit" class="btn btn-primary">Gem Archive</button>
-                    </form><br />
-                    <form action="/users/logout">
-                        <button type="submit" class="btn btn-danger">Log out</button>
-                    </form>
+                        <p>{{user.email}}</p>
+                    </div>
+                    <div class="col">
+                        <form action="#">
+                            <button type="submit" class="btn btn-warning">Account</button>
+                        </form><br />
+                        {{!-- Page will load with results on movies are removed from mined movie array --}}
+                        <form action="#">
+                            <button type="submit" class="btn btn-primary">Gem Archive</button>
+                        </form><br />
+                        <form action="/users/logout">
+                            <button type="submit" class="btn btn-danger">Log out</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <br /><br />
-        <div class="container">
-            {{!-- {{#grouped_each 3 minedMovies}} --}}
-            <div class="row">
-                {{#each minedMovies}}
-                <div class="col text-center mx-auto">
-                    <a href="/browse/view?key={{ this.imdb_title_id }}" class="hvr-grow">
-                        <img src="{{this.poster}}" alt="Poster Image" style="width: 100%; height: auto;" />
-                    </a><br /><br />
-                    <p>{{ this.title }}</p>
-                    {{!-- form messed with formatting, waiting.. --}}
-                    <form method="POST" action="/users/removeGem">
-                        <button class="btn btn-success" type="submit" name="RemoveWatchLaterButton" value={{this.imdb_title_id}}>✔
-                        Watched</button>
-                    </form>
+            <br /><br />
+            <div class="container">
+                {{!-- {{#grouped_each 3 minedMovies}} --}}
+                <div class="row">
+                    {{#each minedMovies}}
+                    <div class="col text-center mx-auto">
+                        <a href="/browse/view?key={{ this.imdb_title_id }}" class="hvr-grow">
+                            <img src="{{this.poster}}" alt="Poster Image" style="width: 100%; height: auto;" />
+                        </a><br /><br />
+                        <p>{{ this.title }}</p>
+                        {{!-- form messed with formatting, waiting.. --}}
+                        <form method="POST" action="/users/removeGem">
+                            <button class="btn btn-success" type="submit" name="RemoveWatchLaterButton"
+                                value={{this.imdb_title_id}}>✔
+                                Watched</button>
+                        </form>
+                    </div>
+                    {{/each}}
                 </div>
-                {{/each}}
+                {{!-- {{/grouped_each}} --}}
             </div>
-            {{!-- {{/grouped_each}} --}}
         </div>
-</div>
+    </div>
 </div>

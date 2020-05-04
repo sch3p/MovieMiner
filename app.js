@@ -22,6 +22,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const browseRouter = require('./routes/browse');
 const searchRouter = require('./routes/search');
+const sansRouter = require('./routes/sans');
 
 /**
  * -------------- GENERAL SETUP ----------------
@@ -107,6 +108,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/browse', browseRouter);
 app.use('/search', searchRouter);
+app.use('/sans', sansRouter);
 
 /**
  * -------------- ERROR HANDLING ----------------
