@@ -93,7 +93,11 @@ router.post('/addReview', async function(req, res, next) {
     if (req.isAuthenticated()) {
         var username = req.user.displayName;
         var review = req.body.addReview;
+        var rating = req.body.stars;
+        console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+        console.log(rating)
         var imdbId = req.body.submitReview;
+        await UserActions.addRating(imdbId, username, rating);
         await UserActions.addReview(imdbId, username, review);
         res.redirect(req.get('referer'));
     } else {
@@ -101,15 +105,17 @@ router.post('/addReview', async function(req, res, next) {
     }
 });
 
-router.post('/addRating', async function(req, res, next) {
-    if (req.isAuthenticated()) {
-        var username = req.user.displayName;
-        var rating = req.body.submitRating; //this will need a matching thing in viewMovie
-        await UserActions.addRating(imdbId, username, rating);
-        res.redirect(req.get('referer'));
-    } else {
-        res.render('user-noprofile', { title: 'Movie Miner' });
-    }
-});
+// moved to save post as reviews
+
+// router.post('/addRating', async function(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         var username = req.user.displayName;
+//         var rating = req.body.submitRating; //this will need a matching thing in viewMovie
+//         await UserActions.addRating(imdbId, username, rating);
+//         res.redirect(req.get('referer'));
+//     } else {
+//         res.render('user-noprofile', { title: 'Movie Miner' });
+//     }
+// });
 
 module.exports = router;

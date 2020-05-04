@@ -1,11 +1,7 @@
 <script>
-    // Successfully added alert
-  $('#success-alert').click(function () {
-    $('#alert-container').bootstrapAlert({
-      type: 'success',
-      message: `Movie ID <b>{{key}}</b> successfully added.`
+    $(document).ready(function () {
+        $("#input-1").rating();
     });
-  });
 </script>
 
 
@@ -37,7 +33,7 @@
                                         Page</a>
                                     <button class="btn btn-success" type="submit" name="mineMovieButton"
                                         value={{../key}} id="success-alert">Mine Movie</button>
-                                </form><br/>
+                                </form><br />
                                 <table class="table table-hover">
                                     <tbody>
                                         <tr>
@@ -98,14 +94,20 @@
             <div class="card-header">
                 <h4>Reviews and Ratings</h4>
             </div><br />
+            <div>
+                <form method="POST" action="/browse/addReview">
+                    <div class="form-group">
+                        <input id="input-1" name="stars" class="rating" data-min="0" data-max="5" data-step="1">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Write a review" aria-label="addReview"
+                            name="addReview">
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="submitReview" value={{key}}>Submit</button>
+                </form>
+            </div>
             <table class="table">
                 <tbody>
-                    <form method="POST" class="form-inline my-2 my-lg-0" action="/browse/addReview">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Write a review"
-                            aria-label="addReview" name="addReview">
-                        <button class="btn btn-secondary" type="submit" name="submitReview"
-                            value={{key}}>Submit</button>
-                    </form>
                     <p>{{../key}}</p>
                     {{#each reviews}}
                     <tr>
