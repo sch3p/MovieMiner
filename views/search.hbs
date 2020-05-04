@@ -5,30 +5,22 @@
         <div style="width: 80vw;">
             <h1>Search Results</h1>
             <br />
-            {{#each theMovie}}
-            <div class="card bg-light text-dark text-center mx-auto" style="width: 50em;">
-                <div class="card-header">
-                    {{ this.title }}
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <img class="card-img-top" src="{{this.poster}}" alt="Poster Image"
-                                style="width:50%; height:auto;">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <a href="/browse/view?key={{ this.imdb_title_id }}" class="btn btn-primary">View
-                                    Movie</a>
-                            </div>
-                        </div>
+            <div class="container">
+                <div class="row">
+                    {{#each theMovie}}
+                    <div class="col text-center mx-auto">
+                        <a href="/browse/view?key={{ this.imdb_title_id }}" class="hvr-grow">
+                            <img src="{{this.poster}}" alt="Poster Image" style="width: 100%; height: auto;" />
+                        </a><br /><br />
+                        <p>{{ this.title }}</p>
+                        {{!-- form messed with formatting, waiting.. --}}
                     </div>
+                    {{else}}
+                    <h3>Sorry bud, can't find what you want :(</h3>
+                    {{/each}}
                 </div>
-                <br />
             </div>
-            <br/>
-            {{else}}
-            <h3>Sorry bud, can't find what you want :(</h3>
-            {{/each}}
         </div>
+        <br />
     </div>
+</div>
