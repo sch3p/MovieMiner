@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
 /* GET view a single movie page. */
 router.get('/view', async function(req, res, next) {
 
-    // if (req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         var key = req.query.key;
         var poster = await Movie.fetchPoster(key);
         var userActions = await UserActions.getUserActions(key);
@@ -57,7 +57,10 @@ router.get('/view', async function(req, res, next) {
                 avgRating: avgRating,
                 minedMoviesLength : minedMoviesLength
             }); 
-    });    
+        })  
+    } else {
+        res.render('user-noprofile', { title: 'Movie Miner' });
+    }  
 });
 
 router.post('/mineMovie', async function(req, res, next) {
